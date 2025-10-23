@@ -1,0 +1,46 @@
+<!doctype html> <!-- Indica que es un documento HTML -->
+<html>
+  <head>
+    <meta charset="utf-8" /> 
+    <title>Tu nombre</title> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Escribe aquí lo que quieras</h1>
+
+
+    <script>
+     function setup() {
+  createCanvas(1600, 800);
+  background(128);
+  strokeWeight(10);
+
+  // Cada línea tendrá un color aleatorio
+  stroke(random(255), random(255), random(255));
+  line(200, 200, 400, 600);
+  stroke(random(255), random(255), random(255));
+  line(400, 600, 600, 200);
+  stroke(random(255), random(255), random(255));
+  line(700, 200, 1000, 200);
+  stroke(random(255), random(255), random(255));
+  line(700, 200, 700, 600);
+  stroke(random(255), random(255), random(255));
+  line(700, 400, 900, 400)
+  stroke(random(255), random(255), random(255));
+  line(1100, 200, 1400, 200)
+  stroke(random(255), random(255), random(255));
+  line(1100, 200, 1100, 600)
+  stroke(random(255), random(255), random(255));
+  line(1400, 200, 1400, 400)
+  stroke(random(255), random(255), random(255));
+  line(1100, 200, 1400, 200)
+  stroke(random(255), random(255), random(255));
+  line(1100, 400, 1400, 400)
+  stroke(random(255), random(255), random(255));
+  line(1100, 400, 1400, 600)
+}
+
+    </script>
+  </body>
+</html>

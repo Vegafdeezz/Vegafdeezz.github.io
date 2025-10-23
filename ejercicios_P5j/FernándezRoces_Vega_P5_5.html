@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Póster adaptable – Ejercicio p5_5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.js"></script>
+  </head>
+
+  <body>
+    <script>
+      function setup() {
+        createCanvas(800, 500); // Prueba a cambiar estos números y verás que todo se adapta 
+        background(200, 230, 255); // Cambia el color del fondo 
+        noStroke();
+
+        // Título centrado usando width/2
+        textSize(28);
+        textAlign(CENTER, TOP);
+        fill(20, 60, 120);
+        text("Mi póster adaptable", width/2, 16);
+
+        // Subtítulo justo debajo
+        textSize(16);
+        fill(60, 80, 140);
+        text("Usando width y height para colocar texto", width/2, 50);
+
+        // Esquinas con coordenadas del propio lienzo
+        textSize(12);
+        fill(0);
+
+        textAlign(LEFT, TOP);
+        text("(0, 0)", 6, 6);
+
+        textAlign(RIGHT, TOP);
+        text("(" + width + ", 0)", width - 6, 6);
+
+        textAlign(LEFT, BOTTOM);
+        text("(0, " + height + ")", 6, height - 6);
+
+        textAlign(RIGHT, BOTTOM);
+        text("(" + width + ", " + height + ")", width - 6, height - 6);
+
+        // Centro real calculado con width/2 y height/2
+        textAlign(CENTER, CENTER);
+        textSize(14);
+        fill(30);
+        text("Centro (" + int(width/2) + ", " + int(height/2) + ")", width/2, height/2);
+
+        // Mi nombre abajo centrado 
+        textAlign(CENTER, BOTTOM);
+        textSize(16);
+        fill(0, 90, 150);
+        text("Vega Fernández Roces", width/2, height - 8);
+      }
+    </script>
+  </body>
+</html>

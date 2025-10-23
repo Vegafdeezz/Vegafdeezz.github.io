@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>P5_3bis</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    </head>
+
+    <body>
+        <script>
+            function setup() {
+                createCanvas(800, 600);
+                background(122, 195, 255);
+
+                // Arcoíris
+                noFill();
+                strokeWeight(20);
+                stroke(255, 0, 0); // rojo
+                arc(400, 500, 700, 700, PI, TWO_PI);
+                stroke(255, 127, 0); // naranja
+                arc(400, 500, 660, 660, PI, TWO_PI);
+                stroke(255, 255, 0); // amarillo
+                arc(400, 500, 620, 620, PI, TWO_PI);
+                stroke(0, 255, 0); // verde
+                arc(400, 500, 580, 580, PI, TWO_PI);
+                stroke(0, 0, 255); // azul
+                arc(400, 500, 540, 540, PI, TWO_PI);
+                stroke(75, 0, 130); // índigo
+                arc(400, 500, 500, 500, PI, TWO_PI);
+
+                // Casa
+                strokeWeight(1);
+                stroke(0);
+                fill(227, 242, 220);
+                rect(200, 300, 200, 200); // cuerpo de la casa
+                fill(163, 29, 0);
+                triangle(200, 300, 400, 300, 300, 200); // techo
+
+                // Puerta
+                fill(100, 50, 0);
+                rect(270, 400, 60, 100);
+
+                // Ventanas
+                fill(135, 206, 250);
+                rect(230, 330, 40, 40);
+                rect(330, 330, 40, 40);
+
+                // cesped
+                stroke(0, 184, 52);
+                fill(0, 184, 52);
+                rect(0, 470, 800, 130);
+
+                // Árbol
+                noStroke();
+                fill(139, 69, 19);
+                rect(100, 350, 30, 120);
+                fill(34, 139, 34);
+                ellipse(115, 330, 100, 100);
+
+                // Coche
+                strokeWeight();
+                fill(0, 0, 200);
+                rect(500, 420, 150, 50); // cuerpo del coche
+                rect(530, 390, 90, 40); // techo del coche
+                fill(0);
+                circle(520, 475, 30); // rueda delantera
+                circle(630, 475, 30); // rueda trasera
+            }
+        </script>
+    </body>
+</html>
