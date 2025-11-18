@@ -1,0 +1,128 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>A1 — Variables (estado + movimiento simple)P5_3bis</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    </head>
+
+    <body>
+        <script>
+        let x_s, y_s, v_s, d_s, r_s;
+        let x_l, y_l, v_l, d_l, r_l;
+        function setup() {
+        createCanvas(800, 600);
+            
+            // Tamaño del sol y de la luna relativo al lienzo
+            d_s = width * 0.1; // 15% del lado menor min(width, height) * 0.15;
+            d_l= d_s;
+            
+            r_s = d_s / 2;
+            r_l= d_l/2;
+            
+            // Posición inicial del sol: empieza entrando desde la izquierda
+            x_s = -r_s;
+            y_s = height * 0.15;   // altura relativa (15% del alto)
+            
+            //posición incial de la luna
+            x_l =-width-r_s;
+            y_l= height * 0.15;
+
+            // Velocidad relativa del sol al ancho (escala con el tamaño del lienzo)
+            v_s = width / 450;     // prueba a ajustar este valor si va muy rápido/lento
+            
+            // Velocidad relativa del sol al ancho
+            v_l= v_s;
+         
+        }
+
+
+        function draw() {
+            background(122, 195, 255);
+            
+            // Arcoíris
+            noFill();
+            strokeWeight(20);
+            stroke(255, 0, 0); // rojo
+            arc(400, 500, 700, 700, PI, TWO_PI);
+            stroke(255, 127, 0); // naranja
+            arc(400, 500, 660, 660, PI, TWO_PI);
+            stroke(255, 255, 0); // amarillo
+            arc(400, 500, 620, 620, PI, TWO_PI);
+            stroke(0, 255, 0); // verde
+            arc(400, 500, 580, 580, PI, TWO_PI);
+            stroke(0, 0, 255); // azul
+            arc(400, 500, 540, 540, PI, TWO_PI);
+            stroke(75, 0, 130); // índigo
+            arc(400, 500, 500, 500, PI, TWO_PI);
+
+            // Casa
+            strokeWeight(1);
+            stroke(0);
+            fill(227, 242, 220);
+            rect(200, 300, 200, 200); // cuerpo de la casa
+            fill(163, 29, 0);
+            triangle(200, 300, 400, 300, 300, 200); // techo
+
+            // Puerta
+            fill(100, 50, 0);
+            rect(270, 400, 60, 100);
+
+            // Ventanas
+            fill(135, 206, 250);
+            rect(230, 330, 40, 40);
+            rect(330, 330, 40, 40);
+
+            //cesped
+            stroke(0, 184, 52);
+            fill(0, 184, 52);
+            rect(0, height * 0.8, width, height * 0.2);
+            
+            // Árbol
+            noStroke();
+            fill(139, 69, 19);
+            rect(100, 350, 30, 130);
+            fill(34, 139, 34);
+            ellipse(115, 330, 100, 100);
+
+            // Coche
+            strokeWeight();
+            fill(0, 0, 200);
+            rect(500, 420, 150, 50); // cuerpo del coche
+            rect(530, 390, 90, 40); // techo del coche
+            fill(0);
+            circle(520, 475, 30); // rueda delantera 
+            circle(630, 475, 30); // rueda trasera 
+            
+            // --- 4) Sol (usa variables en lugar de números fijos) ---
+            fill(255, 210, 0);
+            circle(x_s, y_s, d_s);
+            // --- 4) Luna (usa variables en lugar de números fijos) ---
+            fill(128, 128, 128);
+            circle(x_l, y_l, d_l);
+            
+            
+            // --- 5) ACTUALIZACIÓN del estado (la animación) ---
+            // Cada frame, avanzamos x en v pixeles:
+            x_s = x_s + v_s;
+            x_l = x_l + v_l
+
+           // Nota: no hay condicionales ni "wrap". Si sale de la pantalla, está bien.
+
+           // --- 6) Rotulitos informativos (útiles para depurar y aprender) ---
+           fill(255);
+           textSize(16);
+           textAlign(LEFT, TOP);
+           text("A1 — Variables (estado + movimiento simple)", 10, 10);
+
+           textSize(12);
+            text("x_s = " + nf(x_s, 1, 1) + "  |  v_s = " + nf(v_s, 1, 2), 10, 32);
+            
+           textSize(12);
+            text("x_l = " + nf(x_l, 1, 1) + "  |  v_l = " + nf(v_l, 1, 2), 10, 48);
+            
+            }
+        </script>
+    </body>
+</html>
