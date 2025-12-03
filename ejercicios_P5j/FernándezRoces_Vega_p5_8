@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>A1 — Variables (estado + movimiento simple)P5_3bis</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    </head>
+    
+    <body>
+        <script>
+            //Variables sol y planetas
+            let d_s, r_s, a_s, v_s;
+            let d_m, r_m, a_m, v_m;
+            let d_v, r_v, a_v, v_v;
+            let d_t, r_t, a_t, v_t;
+            let d_mt, r_mt, a_mt, v_mt;
+            let d_j, r_j, a_j, v_j;
+            let d_st, r_st, a_st, v_st;
+            let d_u, r_u, a_u, v_u;
+            let d_n, r_n, a_n, v_n;
+            let d_p, r_p, a_p, v_p;
+            
+            
+        function setup() {
+            createCanvas(1250, 835);
+            background(0, 0, 0); // fondo azul marino
+
+            //centro del sistema solar
+            centerX = width/2
+            centerY = height/2
+            
+            //SOL Y PLANETAS
+                // Tamaño del sol y los planetas relativo al lienzo
+                //diámetros
+                d_s = width * 0.09; // 15% del lado menor min(width, height) * 0.15;
+                d_m = d_s* 0.095;
+                d_v = d_s* 0.20;
+                d_t = d_s* 0.21;
+                d_mt = d_s* 0.09;
+                d_j = d_s* 0.65;
+                d_st = d_s* 0.55;
+                d_u = d_s* 0.35;
+                d_n = d_s* 0.33;
+                d_p = d_s* 0.07;
+            
+                //radios
+                r_s = 0.035* min(width,height);
+                r_m = 2.5* r_s;
+                r_v = 3.5* r_s;
+                r_t = 4.5* r_s;
+                r_mt = 5.5* r_s;
+                r_j = 7.2* r_s;
+                r_st = 9.9* r_s;
+                r_u = 12* r_s;
+                r_n = 13* r_s;
+                r_p = 14* r_s;
+            
+                //ángulos iniciales
+                a_m = 0
+                a_v = PI/3
+                a_t = PI/2
+                a_mt = PI
+                a_j = 4*PI/3
+                a_st = 5* PI/3
+                a_u = 2.2* PI
+                a_n = 2.6* PI
+                a_p = 2.7* PI
+
+                // Velocidades angulares
+                v_m = 0.030 //ajustar este valor si va muy rápido/lento
+                v_v = 0.012
+                v_t = 0.010
+                v_mt = 0.008
+                v_j = 0.004
+                v_st = 0.003
+                v_u =0.002
+                v_n =0.0015
+                v_p =0.001
+                // Velocidad relativa de la luna al ancho
+                v_l = v_s;
+            
+            }
+
+        function draw() {
+            background(0, 0, 0); // fondo negro
+            //centro del sistema solar
+              centerX = width / 2;
+              centerY = height / 2;
+            
+            //orbitas
+              noFill()
+              stroke (255,255,255, 200)
+              strokeWeight (0.5)
+              ellipse(centerX, centerY, 2 * r_m, 2 * r_m); //órbita de mercurio
+              ellipse(centerX, centerY, 2 * r_v, 2 * r_v);  // Órbita de venus
+              ellipse(centerX, centerY, 2 * r_t, 2 * r_t);  // Órbita de la Tierra
+              ellipse(centerX, centerY, 2 * r_mt, 2 * r_mt);  // Órbita de Marte
+              ellipse(centerX, centerY, 2 * r_j, 2 * r_j);  // Órbita de Júpiter
+              ellipse(centerX, centerY, 2 * r_st, 2 * r_st);  // Órbita de Saturno
+              ellipse(centerX, centerY, 2 * r_u, 2 * r_u);  // Órbita de Urano
+              ellipse(centerX, centerY, 2 * r_n, 2 * r_n);  // órbita de Neptuno
+              ellipse(centerX, centerY, 2 * r_p, 2 * r_p);  // Órbita de Plutón
+ 
+            // Dibujar el Sol
+              fill(255, 204, 0);
+              circle(centerX, centerY, d_s)
+            
+            //Dibujar mercurio
+              fill(192, 192, 192)
+              circle(centerX+cos(a_m)*r_m, centerY+sin(a_m)*r_m, d_m)
+            
+            //Dibujar venus
+              fill(255, 213, 128)
+              circle(centerX+cos(a_v)*r_v, centerY+sin(a_v)*r_v, d_v)
+            
+            //Dibujar tierra
+              fill(82, 159, 255)
+              circle(centerX+cos(a_t)*r_t, centerY+sin(a_t)*r_t, d_t)
+            
+            //Dibujar marte
+              fill(139, 0, 0)
+              circle(centerX+cos(a_mt)*r_mt, centerY+sin(a_mt)*r_mt, d_mt)
+            
+            //Dibujar jupiter
+              fill(220, 20, 60)
+              circle(centerX+cos(a_j)*r_j, centerY+sin(a_j)*r_j, d_j)
+            
+            //Dibujar saturno
+              fill(167, 71, 255)
+              circle(centerX+cos(a_st)*r_st, centerY+sin(a_st)*r_st, d_st)
+            
+            //Dibujar urano
+              fill(71, 91, 150)
+              circle(centerX+cos(a_u)*r_u, centerY+sin(a_u)*r_u, d_u)
+            
+            //Dibujar neptuno
+              fill(40, 0, 255)
+              circle(centerX+cos(a_n)*r_n, centerY+sin(a_n)*r_n, d_n)
+            
+            //Dibujar pluton
+              fill(69, 255, 98)
+              circle(centerX+cos(a_p)*r_p, centerY+sin(a_p)*r_p, d_p)
+            
+            //movimiento planetario (actualización)
+              a_m= a_m+v_m  //mercurio
+              a_v= a_v+v_v  //venus
+              a_t= a_t+v_t  //tierra
+              a_mt= a_mt+v_mt  //marte
+              a_j= a_j+v_j  //jupiter
+              a_st= a_st+v_st  //saturno
+              a_u= a_u+v_u  //urano
+              a_n= a_n+v_n  //neptuno
+              a_p= a_p+v_p  //plutón
+            
+        }
+    </script>
+
+</body>
+</html>
