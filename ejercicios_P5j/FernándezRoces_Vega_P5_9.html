@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sol-Tierra-Luna</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+  <script>
+    //Variables sol, tierra y luna
+    let d_s, r_s, a_s, v_s;
+    let d_t, r_t, a_t, v_t;
+    let d_l, r_l, a_l, v_l;
+      
+    let centerX, centerY;
+      
+    function setup() {
+      createCanvas(800, 800);
+
+    //Centro del lienzo
+      centerX= width/2;
+      centerY= height/2;
+        
+    //Sol,tierra y luna
+      //diametros
+        d_s = width * 0.3;
+        d_t = d_s * 0.3;
+        d_l = d_t * 0.27;
+        
+      //radios
+        r_s = 0.035* min(width,height);
+        r_t = 8* r_s;
+        r_l = 0.25 * r_t;
+        
+      //ángulos inic.
+        a_t = PI / 2; 
+        a_l = 0;
+        
+      //velocidades angulares
+        v_t = 0.010;
+        v_l = 0.04;
+        
+    }
+
+    function draw() {
+      background(0, 0, 0); // fondo negro
+        
+      //centro del sistema solar
+        centerX = width / 2;
+        centerY = height / 2;
+        
+      //órbita de la tierra
+        noFill()
+        stroke (255,255,255, 200)
+        strokeWeight (0.5)
+        ellipse(centerX, centerY, 2 * r_t, 2 * r_t);
+        
+      // Dibujar el Sol
+        fill(255, 204, 0);
+        circle(centerX, centerY, d_s)
+     
+      //Dibujar tierra
+        fill(82, 159, 255)
+        let earthX = centerX + cos(a_t) * r_t;
+        let earthY = centerY + sin(a_t) * r_t;
+        circle(earthX, earthY, d_t);
+        
+      //órbita de la luna
+        noFill();
+        stroke(255);
+        strokeWeight(0.5);
+        ellipse(earthX, earthY, 2 * r_l, 2 * r_l);
+        
+      // Dibujar la Luna
+        fill(200, 200, 200);  
+        let moonX = earthX + cos(a_l) * r_l;
+        let moonY = earthY + sin(a_l) * r_l;
+        circle(moonX, moonY, d_l);
+
+      //movimiento planetario (actualización)
+        a_t = a_t+v_t  //tierra
+        a_l = a_l+v_l  //luna
+        
+    }
+       </script>
+</body>
+</html>
