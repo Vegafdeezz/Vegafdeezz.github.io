@@ -1,0 +1,190 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tarea 11 — Sol y Luna</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+<script>
+
+    // 1) Variables (Sol y Luna)
+    let xS, yS, dS, rS, vS;   // Sol
+    let xL, yL, dL, rL, vL;   // Luna
+    let dia, mes, anio;       //Calendario
+    //amigote
+        let xP, yP;        // posición del amigote
+        let S;             // tamaño base del amigote
+        let vP;            // velocidad horizontal (izq/drch)
+        let groundY;       // altura del suelo (coincide con tu rectángulo de suelo en T12)                
+        let vY;            // velocidad vertical del salto
+        let jumpV;         // impulso del salto (valor negativo para subir)
+        let g;             // gravedad (valor positivo para bajar)
+        
+        let rHead //cabeza
+        let bodyL //cuerpo
+        let armL  //brazo
+        let legL  //pierna
+        
+        let hipY // cadera por encima de los pies
+        let shoulderY  // hombros por encima de la cadera
+        let headY // centro de la cabeza
+
+    function setup() {
+        // 2) Lienzo
+        createCanvas(900, 500);
+
+        //Sol
+        dS = 0.1 * width;    // diámetro del Sol (relativo al ancho)
+        rS = dS / 2;
+        yS = 0.2 * height;   // altura relativa
+        xS = -rS;            // arranca entrando por la izquierda
+        vS = width / 400;    // velocidad proporcional al ancho
+
+        //Luna
+        dL = dS * 0.5;     // mitad del Sol
+        rL = dL / 2;
+        xL = -width - rL;  // espera fuera a la izquierda
+        yL = height / 3;   // altura distinta
+        vL = vS;           // misma velocidad (sincronizada)
+        
+        //Calendario
+        dia = 1;
+        mes = 1;
+        anio = 2025;
+        
+        groundY = 0.80 * height;
+        
+        //Amigote
+        //Tamaño y posición inicial
+        S  = 0.12 * min(width, height);
+        xP = 0.25 * width;
+        yP = groundY;                 // IMPORTANTE: aquí yP será la posición de los pies
+
+        //Movimiento horizontal
+        vP = width / 150;
+
+        //Salto (valores sencillos)
+        vY = 0;
+        jumpV = -0.030 * height;      // impulso hacia arriba
+        g = 0.0016 * height;          // aceleración hacia abajo (pequeña)
+        
+        //Amigote
+        rHead = 0.20 * S;
+        bodyL = 0.60 * S;
+        armL  = 0.45 * S;
+        legL  = 0.55 * S;
+        
+        
+        hipY = yP - legL;          
+        shoulderY = hipY - bodyL;  
+        headY = shoulderY - rHead; 
+            
+    }
+
+    function draw() {
+
+        if (xS <= width + rS) {
+            // Día mientras el borde izquierdo del Sol no ha salido por la derecha
+            background(130, 206, 300); //azul
+        } else {
+            // Noche cuando el Sol ya salió completamente por la derecha
+            background(0);  //negro
+        }
+
+        //Suelo (opcional)
+        noStroke();
+        fill(20, 120, 40);
+        rect(0, 0.8 * height, width, 0.2 * height);
+
+        //Sol
+        noStroke();
+        fill(255, 210, 0);
+        circle(xS, yS, dS);
+
+        //Luna
+        noStroke();
+        fill(200);
+        circle(xL, yL, dL);
+
+        // 6) Movimiento constante
+        xS = xS + vS;
+        xL = xL + vL;
+
+        //Reinicio por posición 
+        if (xS >= 2 * width + rS) {
+            xS = -rS;           // Sol vuelve a entrar
+            xL = -width - rL;   // Luna vuelve a esperar
+            
+        //cambio de fecha
+        dia++;
+        if (dia > 30) {
+            dia = 1;
+            mes=mes+1;
+        }
+        if (mes > 12) {
+            mes = 1;
+            anio= anio+1;
+        }
+        }
+            
+        //Amigote
+        stroke(255, 43, 0);
+        strokeWeight(0.06 * S);
+        noFill(0);
+            
+         // Cabeza
+         circle(xP, headY, 2 * rHead);
+
+         // Tronco
+         line(xP, shoulderY, xP, hipY);
+
+         // Brazos (una línea horizontal + dos líneas hacia abajo)
+         line(xP - 0.25*S, shoulderY, xP + 0.25*S, shoulderY);
+         line(xP - 0.25*S, shoulderY, xP - 0.25*S, shoulderY + armL);
+         line(xP + 0.25*S, shoulderY, xP + 0.25*S, shoulderY + armL);
+
+         // Piernas
+         line(xP, hipY, xP - 0.18*S, yP);
+         line(xP, hipY, xP + 0.18*S, yP);
+            
+        if (keyIsDown(LEFT_ARROW)) {
+            xP = xP - vP;} 
+        else if (keyIsDown(RIGHT_ARROW)) {
+            xP = xP + vP;}
+            
+        if (xP < 0) {
+            xP = 0;}
+        if (xP > width) {
+            xP = width;}  
+            
+        // Física mínima del salto (se ejecuta siempre) 
+        vY = vY + g; // gravedad 
+        yP = yP + vY; // actualiza pies
+        // Si toca el suelo, corregimos 
+        if (yP > groundY) 
+        { yP = groundY; vY = 0; }
+            
+        //Recalcular cuerpo según yP
+        hipY = yP - legL;          
+        shoulderY = hipY - bodyL;  
+        headY = shoulderY - rHead; 
+    
+        //Depuración: variables en pantalla
+        textSize(14);
+        stroke(255, 0, 0);
+        fill(255);
+        text("xS: " + nf(xS, 1, 2), 10, 20);
+        text("xL: " + nf(xL, 1, 2), 10, 35);
+        text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 10, 50);
+    }
+    function keyPressed() {
+    if (keyCode === UP_ARROW && vY === 0) {
+        vY = jumpV;
+    }
+}
+
+</script>
+</body>
+</html>
