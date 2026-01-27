@@ -110,17 +110,13 @@
         fill(20, 120, 40);
         rect(0, 0.8 * height, width, 0.2 * height);
 
-        //Sol
-        noStroke();
-        fill(255, 210, 0);
-        circle(xS, yS, dS);
+        //sol
+        dibujarSol();
 
         //Luna
-        noStroke();
-        fill(200);
-        circle(xL, yL, dL);
+        dibujarLuna();
 
-        // 6) Movimiento constante
+        //Movimiento constante
         xS = xS + vS;
         xL = xL + vL;
 
@@ -144,24 +140,23 @@
         // objetivo
         xO += vO;
         if (xO > width + wO || xO < -wO) {
-            yO = random(0.20 * height, 0.35 * height);
+            yO = random(0.20* height, 0.35* height);
 
         if (random(1) < 0.5) {
-            xO = -wO;
-            vO = random(width / 300, width / 200);
+            xO = xO + vO 
+            vO = random(width /300, width /200);
             } else {
                 xO = width + wO;
-                vO = -random(width / 300, width / 200);
+                vO = -random(width /300, width /200);
             }
         }
         
         //dibujo amigote
-            dibujoamigote()
+            dibujoAmigote()
         
         // dibujar disparo
         if (disparoActivo) {
             yD -= vD;
-
             if (yD < -tD) {
                 disparoActivo = false;
             }
@@ -172,19 +167,25 @@
         //dibujo objetivo
             dibujarObjetivo();
         
-        //Depuración: variables en pantalla
-        textSize(14);
-        stroke(255, 0, 0);
-        fill(255);
-        text("xS: " + nf(xS, 1, 2), 10, 20);
-        text("xL: " + nf(xL, 1, 2), 10, 35);
-        text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 10, 50);
+        //Dibujo el calendario de texto
+            dibujaCalendario();
+
         }
 
 
 //funciones   
 
-    function dibujoamigote(){
+    function dibujarSol(){
+        noStroke();
+        fill(255, 210, 0);
+        circle(xS, yS, dS);
+        }
+    function dibujarLuna(){
+        noStroke();
+        fill(200);
+        circle(xL, yL, dL);
+        }
+    function dibujoAmigote(){
     //Amigote
         stroke(255, 43, 0);
         strokeWeight(0.06 * S);
@@ -239,6 +240,15 @@
         fill(255, 0, 0);
         rect(xO, yO, wO, hO, 8);
     } 
+    
+    function dibujaCalendario(){
+        textSize(14);
+        stroke(255, 0, 0);
+        fill(255);
+        text("xS: " + nf(xS, 1, 2), 10, 20);
+        text("xL: " + nf(xL, 1, 2), 10, 35);
+        text("Fecha: (" + dia + ") (" + mes + ") (" + anio + ")", 10, 50);
+        }
     
     function keyPressed() {
         if (keyCode === UP_ARROW && vY === 0) {
