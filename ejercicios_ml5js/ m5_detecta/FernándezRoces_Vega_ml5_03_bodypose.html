@@ -168,45 +168,45 @@
       <li><strong>Mala iluminación / contraluz</strong>
         <ul>
           <strong>Síntoma:</strong> Los puntos desaparecen o se colocan mal.<br>
-          <strong>Condiciones:</strong> Poca luz o luz detrás del cuerpo.<br>
-          <strong>Posible causa:</strong> Bajo contraste impide detectar correctamente los keypoints.<br>
-          <strong>Comprobación:</strong> Probado en habitación oscura y los puntos fallaban.<br>
+          <strong>Condiciones:</strong> Poca luz o contraluz.<br>
+          <strong>Posible causa:</strong> Bajo contraste que impide detectar correctamente los keypoints.<br>
+          <strong>Comprobación:</strong> Probado sin luz detras y los puntos seguían fallando.<br>
         </ul>
       </li>
 
       <li><strong>Movimiento rápido (jitter)</strong>
         <ul>
-          <strong>Síntoma:</strong> Los puntos saltan o vibran.<br>
+          <strong>Síntoma:</strong> Los puntos desaparecen.<br>
           <strong>Condiciones:</strong> Movimientos bruscos o rápidos.<br>
           <strong>Posible causa:</strong> Baja tasa de FPS o latencia del dispositivo.<br>
-          <strong>Comprobación:</strong> Al mover brazos rápido, el esqueleto se rompía.<br>
+          <strong>Comprobación:</strong> Al moverse rápido, el esqueleto se rompía.<br>
         </ul>
       </li>
 
       <li><strong>Distancia incorrecta</strong>
         <ul>
           <strong>Síntoma:</strong> No detecta bien el cuerpo completo.<br>
-          <strong>Condiciones:</strong> Muy cerca o muy lejos de la cámara.<br>
+          <strong>Condiciones:</strong> De muy cerca o muy lejos de la cámara.<br>
           <strong>Posible causa:</strong> El modelo funciona mejor dentro de un rango óptimo.<br>
-          <strong>Comprobación:</strong> Al alejarme mucho, dejó de detectar piernas.<br>
+          <strong>Comprobación:</strong> Al alejarse mucho deja de detectar piernas.<br>
         </ul>
       </li>
 
       <li><strong>Oclusión parcial</strong>
         <ul>
-          <strong>Síntoma:</strong> Desaparecen puntos de brazos o piernas.<br>
-          <strong>Condiciones:</strong> Partes del cuerpo fuera del plano o tapadas.<br>
-          <strong>Posible causa:</strong> El modelo necesita ver la parte corporal para estimarla.<br>
-          <strong>Comprobación:</strong> Al tapar un brazo, el punto desapareció.<br>
+          <strong>Síntoma:</strong> Desaparecen puntos o se mezclan con otas superficies.<br>
+          <strong>Condiciones:</strong> Partes del cuerpo tapadas por otro objeto.<br>
+          <strong>Posible causa:</strong> El modelo necesita ver el esqueleto completo.<br>
+          <strong>Comprobación:</strong> Al ponerse detrás de la mesa no detectaba la parte del cuerpo tapado.<br>
         </ul>
       </li>
 
       <li><strong>Varias personas en escena</strong>
         <ul>
           <strong>Síntoma:</strong> Mezcla puntos entre personas.<br>
-          <strong>Condiciones:</strong> Dos personas frente a la cámara.<br>
-          <strong>Posible causa:</strong> Confusión en la asignación de keypoints.<br>
-          <strong>Comprobación:</strong> Con dos personas, el esqueleto cambiaba de una a otra.<br>
+          <strong>Condiciones:</strong> Cuando hay dos personas frente a la cámara.<br>
+          <strong>Posible causa:</strong> Confunde los keypoints.<br>
+          <strong>Comprobación:</strong> Con dos personas, los esqueletosw se mezclan.<br>
         </ul>
       </li>
     </ol>
