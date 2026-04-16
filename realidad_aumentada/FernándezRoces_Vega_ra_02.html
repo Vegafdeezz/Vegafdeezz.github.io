@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>RA 02 - Primera escena con marcador</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RA 01 - Primera escena con marcador</title>
 
   <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.7/aframe/build/aframe-ar.js"></script>
@@ -71,25 +72,18 @@
     }
   </style>
 </head>
+
 <body>
   <div class="pagina">
     <div class="caja-ra" id="contenedor-ra">
+      <a-scene
+        embedded
+        vr-mode-ui="enabled: false"
+        renderer="alpha: true; antialias: true;"
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
 
-  <a-scene>
-
-    <!-- Fondo -->
-    <a-sky color="#222"></a-sky>
-
-    <!-- Suelo -->
-    <a-plane
-      position="0 0 -4"
-      rotation="-90 0 0"
-      width="6"
-      height="6"
-      color="#555">
-    </a-plane>
-
-    <!-- Contenedor del objeto -->
+        <a-marker preset="hiro">
+          <!-- Contenedor del objeto -->
     <a-entity id="modelo" position="0 0 -4">
 
       <!-- Base -->
@@ -117,12 +111,11 @@
       </a-box>
 
     </a-entity>
+        </a-marker>
 
-    <!-- Cámara -->
-    <a-camera position="0 1.6 0"></a-camera>
-
-  </a-scene>
- </div>
+        <a-entity camera></a-entity>
+      </a-scene>
+    </div>
   </div>
 
   <script>
